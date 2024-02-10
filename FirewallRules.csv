@@ -1,0 +1,5 @@
+RuleID,IP_Address,Action,Protocol,Weighting
+1,127.0.0.1,Allow,ALL,1
+2,127.0.0.2,Allow,ALL,2
+3,127.0.0.3,Allow,ALL,3
+4,127.0.0.4,Allow,ALL,4
