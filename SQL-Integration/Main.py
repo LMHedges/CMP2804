@@ -18,9 +18,9 @@ load_dotenv(dotenv_path=env_path)
 StorageType = os.getenv("StorageType")
 
 # initiating classes
-modify_table_instance = ModifyTable(StorageType)
-insert_row_instance = modify_table_instance.InsertRow(modify_table_instance)
-insert_row_instance.insert(ExampleQuery)
+ModifyTable_instance = ModifyTable(StorageType)
+InsertRow_instance = InsertRow_instance.InsertRow(ModifyTable_instance)
+InsertRow_instance.insert(ExampleQuery)
 
 
 
