@@ -2,6 +2,11 @@
 ## reading from table data ONLY ## 
 ## ############################ ## 
 
+import sqlite3
+import mysql.connector 
+import os
+
+
 
 class ReadData:
     
@@ -33,6 +38,8 @@ class ReadData:
             print("Valid SQL connection credentials NOT provided")
             return False
         
+
+
     # Reads from SQL table and prints all records
     def ReadSQLTable():
         print("Reading from SQL Table...")

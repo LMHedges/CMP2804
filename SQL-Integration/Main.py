@@ -1,8 +1,9 @@
+from Validation import Validation
+from ReadData import ReadData
+
 import os
-import sqlite3
 import csv
 from dotenv import load_dotenv
-import mysql.connector 
 
 
 
@@ -21,9 +22,9 @@ StorageType = os.getenv("StorageType")
 ## ################## ##
 
 if StorageType == "SQL":
-    ValidDatabase = CheckSQLConnection()
+    ValidDatabase = ReadData.CheckSQLConnection()
     if True:
-        ReadSQLTable()
+        ReadData.ReadSQLTable()
     
 elif StorageType == "CSV":
     CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
