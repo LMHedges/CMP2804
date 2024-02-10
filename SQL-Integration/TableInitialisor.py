@@ -25,6 +25,7 @@ def CreateDatabaseIfNotExists():
     
     # Create table if it doesn't exist
     Cursor.execute(''' 
+                   
     CREATE TABLE IF NOT EXISTS FirewallRules
     (
         RuleID INT PRIMARY KEY,
@@ -61,13 +62,52 @@ def CheckSQLConnection():
             port = os.getenv("SQLPort"),
             user = os.getenv("SQLUser"),
             passwd = os.getenv("SQLPassword"),
-            database = os.getenv("FirewallRules")
+            database = os.getenv("rulesetdatabase")
         )
         print("Valid SQL connection credentials provided")
+       
         CreateDatabaseIfNotExists() # Creates a table for the firewall rules if it doesn't already exist
-   
+        return True
     except:
         print("Valid SQL connection credentials NOT provided")
+        return False
+        
+# Reads from SQL table and prints all records
+def ReadSQLTable():
+    print("Reading from SQL Table...")
+    try:
+        # Establish a new connection using environment variables
+        mydb = mysql.connector.connect(
+            host=os.getenv("SQLHost"),
+            port=os.getenv("SQLPort"),
+            user=os.getenv("SQLUser"),
+            passwd=os.getenv("SQLPassword"),
+            database=os.getenv("rulesetdatabase")  # Ensure this is the correct env variable for the database name
+        )
+        cursor = mydb.cursor()
+
+        # Execute SQL query to fetch all records from FirewallRules
+        cursor.execute("USE rulesetdatabase")
+        cursor.execute("SELECT * FROM FirewallRules")
+
+        # Fetch all rows from the last executed query
+        records = cursor.fetchall()
+
+        # Check if there are records to print, otherwise state it's empty
+        if records:
+            print("Displaying all records from FirewallRules:")
+            for record in records:
+                print(record)
+        else:
+            print("No records found in FirewallRules.")
+
+        # Close the cursor and connection
+        cursor.close()
+        mydb.close()
+
+    except mysql.connector.Error as err:
+        print(f"Error reading from MySQL table: {err}")
+    
     
     
 
@@ -87,12 +127,23 @@ def IPChecker(IP_Address):
     
 
 
+## ######################################################### ## 
+## Modifying actions eg deleting, updating, adding new rules ##
+## ######################################################### ##
+
+
+
+
+
 ## ################## ##
 ## Global Access Code ##
 ## ################## ##
 
 if StorageType == "SQL":
-    CheckSQLConnection()
+    ValidDatabase = CheckSQLConnection()
+    if True:
+        ReadSQLTable()
+    
 elif StorageType == "CSV":
     CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
     OpenCSV(CSVFilePath)
