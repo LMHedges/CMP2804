@@ -1,11 +1,12 @@
 from Validation import Validation
 from ReadData import ReadData
+from ModifyTable import ModifyTable
 
 import os
 import csv
 from dotenv import load_dotenv
 
-
+ExampleQuery = ['101', '192.168.1.1', 'Allow', 'TCP', 10]
 
 # Defines local directory to allow for relative pathing across any device running the code
 CurrentDirectory = os.path.dirname(__file__)
@@ -16,10 +17,13 @@ env_path = os.path.join('SQL-Integration', 'SQL.env')
 load_dotenv(dotenv_path=env_path)
 StorageType = os.getenv("StorageType")
 
+# initiating classes
+modify_table_instance = ModifyTable(StorageType)
+insert_row_instance = modify_table_instance.InsertRow(modify_table_instance)
+insert_row_instance.insert(ExampleQuery)
 
-## ################## ##
-## Global Access Code ##
-## ################## ##
+
+
 
 if StorageType == "SQL":
     ValidDatabase = ReadData.CheckSQLConnection()
@@ -28,6 +32,12 @@ if StorageType == "SQL":
     
 elif StorageType == "CSV":
     CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
-    OpenCSV(CSVFilePath)
+    ReadData.OpenCSV(CSVFilePath)
+    
+print("What would you like to do? \n")
+choice = input("")
+if choice == "Insert":
+    pass
+
 
 
