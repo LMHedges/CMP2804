@@ -19,7 +19,7 @@ StorageType = os.getenv("StorageType")
 
 # initiating classes
 ModifyTable_instance = ModifyTable(StorageType)
-InsertRow_instance = InsertRow_instance.InsertRow(ModifyTable_instance)
+InsertRow_instance = ModifyTable_instance.InsertRow(ModifyTable_instance)
 InsertRow_instance.insert(ExampleQuery)
 
 
