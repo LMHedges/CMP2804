@@ -1,6 +1,7 @@
 from Validation import Validation
 from ReadData import ReadData
 from ModifyTable import ModifyTable
+from User_CLI import run_user_cli
 
 import os
 import csv
@@ -33,16 +34,11 @@ if StorageType == "SQL":
 elif StorageType == "CSV":
     CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
     ReadData.OpenCSV(CSVFilePath)
+   
+# Runs User based CLI format function assuming environmental variable is set to user    
+if InputUserFormat == "User":
+    run_user_cli()
     
-print("What would you like to do? \n")
-choice = input("")
-if choice == "exit":
-    pass
-elif choice == "insert":
-    pass
-elif choice == "delete":
-    pass
-elif choice == "update":
-    pass
+
 
 
