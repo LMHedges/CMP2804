@@ -20,6 +20,11 @@ load_dotenv(dotenv_path=env_path)
 StorageType = os.getenv("StorageType")
 InputUserFormat = os.getenv("InputUserFormat")
 
+# Verify connectivity and data integrity
+if StorageType == "SQL":
+    ValidDatabase = ReadData.CheckSQLConnection()
+    
+
 # initiating classes
 ModifyTable_instance = ModifyTable(StorageType)
 InsertRow_instance = ModifyTable_instance.InsertRow(ModifyTable_instance)
@@ -37,7 +42,7 @@ elif StorageType == "CSV":
    
 # Runs User based CLI format function assuming environmental variable is set to user    
 if InputUserFormat == "User":
-    run_user_cli()
+    run_user_cli(InputUserFormat, StorageType)
     
 
 

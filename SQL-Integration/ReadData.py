@@ -1,6 +1,7 @@
 ## ############################ ## 
 ## reading from table data ONLY ## 
 ## ############################ ## 
+#import Main
 
 import sqlite3
 import mysql.connector 
@@ -33,7 +34,7 @@ class ReadData:
             )
             print("Valid SQL connection credentials provided")
        
-            CreateDatabaseIfNotExists() # Creates a table for the firewall rules if it doesn't already exist
+            ModifyTable.CreateDatabaseIfNotExists() # Creates a table for the firewall rules if it doesn't already exist
             return True
         except:
             print("Valid SQL connection credentials NOT provided")
@@ -51,8 +52,7 @@ class ReadData:
                 port=os.getenv("SQLPort"),
                 user=os.getenv("SQLUser"),
                 passwd=os.getenv("SQLPassword"),
-                database=os.getenv("rulesetdatabase")  # Ensure this is the correct env variable for the database name
-            )
+                database=os.getenv("rulesetdatabase"))
             cursor = mydb.cursor()
 
             # Execute SQL query to fetch all records from FirewallRules
@@ -74,7 +74,7 @@ class ReadData:
             cursor.close()
             mydb.close()
 
-        except mysql.connector.Error as err:
-            print(f"Error reading from MySQL table: {err}")
+        except mysql.connector.Error as error:
+            print(f"Error reading from MySQL table: {error}")
     
 
