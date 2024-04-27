@@ -6,17 +6,17 @@ class ModifyTable:
         def __init__(self, parent):
             self.parent = parent       
 
-        def insert(self, ExampleQuery):
+        def insert(self, Query):
             
             if self.parent.StorageType == "SQL":
-                self.InsertRowCSV(ExampleQuery)
+                self.InsertRowCSV(Query)
             
             elif self.parent.StorageType == "CSV":
-                self.InsertRowCSV(ExampleQuery)
+                self.InsertRowCSV(Query)
 
-        def InsertRowSQL(self, ExampleQuery):
-            pass
+        def InsertRowSQL(self, Query):
+            cursor.execute("INSERT INTO rulesetdatabase ", Query, " ;")
 
-        def InsertRowCSV(self, ExampleQuery):
+        def InsertRowCSV(self, Query):
             pass
         
