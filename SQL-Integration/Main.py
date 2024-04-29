@@ -10,8 +10,6 @@ import csv
 import pymysql
 from dotenv import load_dotenv
 
-Query = ['101', '192.168.1.1', 'Allow', 'TCP', 10]
-
 # Defines local directory to allow for relative pathing across any device running the code
 CurrentDirectory = os.path.dirname(__file__)
 RootDirectory = os.path.join(CurrentDirectory, "..")

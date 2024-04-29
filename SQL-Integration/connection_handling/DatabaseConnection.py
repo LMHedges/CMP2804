@@ -6,11 +6,11 @@ class DatabaseConnection:
     
     # Pulls credentials from sql.env - will use default values otherwise
     def __init__(self):
-        self.host = os.getenv('SQLHost', 'localhost')
-        self.port = int(os.getenv('SQLPort', 3309))
-        self.user = os.getenv('SQLUser', 'root')
-        self.password = os.getenv('SQLPassword', 'password')
-        self.database = os.getenv('SQLDatabase', 'FirewallRules')
+        self.host = os.getenv('SQLHost')
+        self.port = int(os.getenv('SQLPort'))
+        self.user = os.getenv('SQLUser')
+        self.password = os.getenv('SQLPassword')
+        self.database = os.getenv('SQLDatabase')
 
     def connect(self):
         try:
