@@ -2,10 +2,12 @@ from Validation import Validation
 from ReadData import ReadData
 from ModifyTable import ModifyTable
 from User_CLI import run_user_cli
+from connection_handling.DatabaseConnection import DatabaseConnection
+
 
 import os
 import csv
-import mysql.connector
+import pymysql
 from dotenv import load_dotenv
 
 Query = ['101', '192.168.1.1', 'Allow', 'TCP', 10]
@@ -20,6 +22,12 @@ load_dotenv(dotenv_path=env_path)
 StorageType = os.getenv("StorageType")
 InputUserFormat = os.getenv("InputUserFormat")
 
+# Setup database connection and cursor
+db_connection = DatabaseConnection()
+connection = db_connection.connect_and_initialize() 
+cursor = connection.cursor()
+
+
 # Verify connectivity and data integrity
 if StorageType == "SQL":
     ValidDatabase = ReadData.CheckSQLConnection()
@@ -32,11 +40,13 @@ InsertRow_instance.insert(Query)
 
 
 if StorageType == "SQL":
+    print("SQL chosen")
     ValidDatabase = ReadData.CheckSQLConnection()
     if True:
         ReadData.ReadSQLTable()
     
 elif StorageType == "CSV":
+    print("CSV chosen")
     CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
     ReadData.OpenCSV(CSVFilePath)
    

@@ -4,7 +4,7 @@
 #import Main
 
 import sqlite3
-import mysql.connector 
+#import mysql.connector
 import os
 import csv
 

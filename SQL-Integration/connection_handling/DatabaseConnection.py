@@ -1,7 +1,6 @@
 import os
-import mysql.connector
-from mysql.connector import Error
-from connection_handling.CreateDatabase import CreateTable
+import pymysql
+#from CreateDatabase import CreateTable
 
 class DatabaseConnection:
     def __init__(self):
@@ -24,19 +23,18 @@ class DatabaseConnection:
         return config
 
     def connect(self):
-        """Connect to the SQL database using credentials loaded from SQL.env."""
+        """Connect to the MySQL database using credentials loaded from SQL.env."""
         try:
-            connection = mysql.connector.connect(
-                host=self.database_config.get('DB_HOST'),
-                user=self.database_config.get('DB_USER'),
-                password=self.database_config.get('DB_PASSWORD'),
-                database=self.database_config.get('DB_DATABASE')
+            connection = pymysql.connect(
+                host=self.database_config.get('SQLHost'),
+                user=self.database_config.get('SQLUser'),
+                password=self.database_config.get('SQLPassword'),
+                port=int(self.database_config.get('SQLPort')),
+                cursorclass=pymysql.cursors.DictCursor  # Using dict cursor to have column names with values
             )
-            if connection.is_connected():
-                db_info = connection.get_server_info()
-                print(f"Successfully connected to MySQL Server version {db_info}")
-                return connection
-        except Error as e:
+            print(f"Successfully connected to MySQL database.")
+            return connection
+        except pymysql.MySQLError as e:
             print(f"Error connecting to MySQL database: {e}")
             raise
 
@@ -52,7 +50,7 @@ class DatabaseConnection:
 
     def close_connection(self, connection):
         """Close the database connection."""
-        if connection and connection.is_connected():
+        if connection:
             connection.close()
             print("MySQL connection is closed")
 

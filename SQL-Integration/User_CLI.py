@@ -1,6 +1,6 @@
 import time
 import os
-from Validation import Validation  # Make sure this import reflects the correct location of the Validation class
+from Validation import Validation # used for IP address, action, protocol, weighting validation 
 
 def get_valid_input(prompt, validation_function):
     """Prompt the user for input and validate the input using the provided function."""
@@ -54,6 +54,3 @@ def run_user_cli(InputUserFormat, StorageType):
     else:
         print("Invalid InputUserFormat environmental variable")
         exit()
-
-if __name__ == "__main__":
-    run_user_cli()

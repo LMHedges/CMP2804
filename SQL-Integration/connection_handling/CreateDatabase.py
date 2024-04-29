@@ -1,4 +1,6 @@
-from connection_handling.DatabaseConnection import DatabaseConnection
+#from connection_handling.DatabaseConnection import DatabaseConnection
+import sqlite3
+
 
 class CreateTable:
     def __init__(self, connection):
