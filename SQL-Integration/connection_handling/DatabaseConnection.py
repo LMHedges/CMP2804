@@ -62,9 +62,15 @@ class DatabaseConnection:
 
 
     def connect_and_initialize(self):
-        connection = self.connect()
-        self.create_firewall_rules_table(connection)
-        return connection
+        return pymysql.connect(
+            host=self.host,
+            port=self.port,
+            user=self.user,
+            password=self.password,
+            database=self.database,
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor  # Ensure this is correctly set
+        )
 
 if __name__ == "__main__":
     db = DatabaseConnection()
