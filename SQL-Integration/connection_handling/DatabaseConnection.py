@@ -1,12 +1,16 @@
 import pymysql
+from dotenv import load_dotenv
+import os
 
 class DatabaseConnection:
+    
+    # Pulls credentials from sql.env - will use default values otherwise
     def __init__(self):
-        self.host = 'localhost'
-        self.user = 'root'
-        self.password = 'password'
-        self.database = 'FirewallRules'
-        self.port = int('3309')
+        self.host = os.getenv('SQLHost', 'localhost')
+        self.port = int(os.getenv('SQLPort', 3309))
+        self.user = os.getenv('SQLUser', 'root')
+        self.password = os.getenv('SQLPassword', 'password')
+        self.database = os.getenv('SQLDatabase', 'FirewallRules')
 
     def connect(self):
         try:
@@ -28,15 +32,34 @@ class DatabaseConnection:
                 raise
 
     def create_firewall_rules_table(self, connection):
-        with connection.cursor() as cursor:
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS firewall_rules (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    rule_name VARCHAR(255) NOT NULL,
-                    rule_description TEXT
-                )
-            """)
-            connection.commit()
+        # SQL command to insert data
+        sample_query = """INSERT INTO firewall_rules (IP, AllowDeny, Protocol, Weighting)
+                          VALUES (%s, %s, %s, %s)"""
+    
+        # Data tuple matching the SQL placeholders
+        test_samples = ('192.168.1.1', 'Allow', 'TCP', 10)
+
+        try:
+            with connection.cursor() as cursor:
+                # Create the table if it doesn't exist
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS firewall_rules (
+                        RuleID INT AUTO_INCREMENT PRIMARY KEY,
+                        IP VARCHAR(15),
+                        AllowDeny ENUM('Allow', 'Deny') NOT NULL,
+                        Protocol ENUM('TCP', 'UDP', 'ALL') NOT NULL,
+                        Weighting INT
+                    )
+                """)
+                connection.commit()
+
+                # Insert data into the table
+                cursor.execute(sample_query, test_samples)
+                connection.commit()
+        except pymysql.Error as e:
+            print(f"An error occurred: {e}")
+
+
 
     def connect_and_initialize(self):
         connection = self.connect()
