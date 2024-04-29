@@ -1,9 +1,6 @@
-from Validation import Validation
-from ReadData import ReadData
 from ModifyTable import ModifyTable
-from User_CLI import run_user_cli
+from interface_handling.User_CLI import UserCLI
 from connection_handling.DatabaseConnection import DatabaseConnection
-
 
 import os
 import csv
@@ -25,32 +22,23 @@ db_connection = DatabaseConnection()
 connection = db_connection.connect_and_initialize() 
 cursor = connection.cursor()
 
-
-# Verify connectivity and data integrity
-if StorageType == "SQL":
-    ValidDatabase = ReadData.CheckSQLConnection()
-    
-
 # initiating classes
-ModifyTable_instance = ModifyTable(StorageType)
+ModifyTable_instance = ModifyTable(StorageType, cursor)
 InsertRow_instance = ModifyTable_instance.InsertRow(ModifyTable_instance)
-InsertRow_instance.insert(Query)
 
 
 if StorageType == "SQL":
     print("SQL chosen")
-    ValidDatabase = ReadData.CheckSQLConnection()
-    if True:
-        ReadData.ReadSQLTable()
+    
     
 elif StorageType == "CSV":
     print("CSV chosen")
     CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
-    ReadData.OpenCSV(CSVFilePath)
    
 # Runs User based CLI format function assuming environmental variable is set to user    
 if InputUserFormat == "User":
-    run_user_cli(InputUserFormat, StorageType)
+    UserCLI(connection) # default __init__ function passing connection object to UserCLI class
+    UserCLI(connection).collect_data() # prompts user for data input
     
 
 
