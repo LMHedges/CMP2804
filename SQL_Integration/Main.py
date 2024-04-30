@@ -4,49 +4,47 @@ import uvicorn
 from fastapi import FastAPI
 from interface_handling.User_CLI import UserCLI
 from connection_handling.DatabaseConnection import DatabaseConnection
-
-# Assumes ModifyTable and other necessary classes are in appropriate modules
 from ModifyTable import ModifyTable
 
-# Defines local directory to allow for relative pathing across any device running the code
-CurrentDirectory = os.path.dirname(__file__)
-RootDirectory = os.path.join(CurrentDirectory, "..")
+# Import FastAPI instances from other modules
+from interface_handling.System_API import app as system_api_app
+from packet_logging.packet_logging import app as packet_logging_app
 
-# Load environment variables from SQL.env
-env_path = os.path.join('SQL-Integration', 'SQL.env')
-load_dotenv(dotenv_path=env_path)
+# Setup Main FastAPI app
+app = FastAPI()
 
-# Environment variables with default values in case they're not set
-StorageType = os.getenv("StorageType", "SQL")  # Default to SQL if not specified
-InputUserFormat = os.getenv("InputUserFormat", "User")  # Default to User if not specified
+# Mount sub-applications under specific paths
+app.mount("/api/system", system_api_app)
+app.mount("/api/packet-logging", packet_logging_app)
 
-app = FastAPI()  # Initialize FastAPI app here to ensure it's ready for uvicorn
+# Remainder of your main setup should be placed within asynchronous functions
 
-# Setup database connection and cursor
-db_connection = DatabaseConnection()
-connection = db_connection.connect_and_initialize()
-cursor = connection.cursor()
+async def startup():
+    # Setup database connection and cursor
+    db_connection = DatabaseConnection()
+    connection = await db_connection.connect_and_initialize_async()
+    cursor = connection.cursor()
 
-# Initiate classes
-ModifyTable_instance = ModifyTable(StorageType, cursor)
+    # Initiate classes based on environment settings
+    ModifyTable_instance = ModifyTable(os.getenv("StorageType", "SQL"), cursor)
 
-if StorageType == "SQL":
-    print("SQL chosen")
-elif StorageType == "CSV":
-    print("CSV chosen")
-    CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
-
-# Main function to start the FastAPI server using uvicorn
-if __name__ == "__main__":
     if os.getenv("StorageType") == "SQL":
         print("SQL chosen")
-        # Specify the correct module path where the FastAPI app is defined
-        uvicorn.run("interface_handling.System_API:app", host="127.0.0.1", port=8000, reload=True)
+    elif os.getenv("StorageType") == "CSV":
+        print("CSV chosen")
+        CSVFilePath = os.path.join(RootDirectory, "FirewallRules.csv")
 
+async def user_input():
+    if os.getenv("InputUserFormat", "User") == "User":
+        user_cli = UserCLI(connection)  # Create instance once
+        await user_cli.collect_data_async()  # Prompts user for data input
 
+if __name__ == "__main__":
+    # Run the main application asynchronously
+    import asyncio
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(startup())
+    loop.run_until_complete(user_input())
 
-if InputUserFormat == "User":
-    user_cli = UserCLI(connection)  # Create instance once
-    user_cli.collect_data()  # Prompts user for data input
-
-
+    # Run FastAPI asynchronously
+    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
