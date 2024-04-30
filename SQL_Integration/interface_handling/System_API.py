@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 import pymysql
 import os
 import sys
-
+import logging
+import time
 
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(root_dir)
@@ -13,6 +14,8 @@ sys.path.append(root_dir)
 from connection_handling.DatabaseConnection import DatabaseConnection
 
 app = FastAPI()
+logging.basicConfig(filename='API_logs.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 # Load environment variables
 env_path = os.path.join(os.path.dirname(__file__), '..', 'SQL.env')
@@ -20,10 +23,25 @@ load_dotenv(dotenv_path=env_path)
 
 
 class FirewallRule(BaseModel):
-    ip: str = Field(..., alias='IP')
-    allow_deny: str = Field(..., alias='AllowDeny')
-    protocol: str = Field(..., alias='Protocol')
-    weight: Optional[int] = Field(None, alias='Weighting')
+    ip: str = Field(..., alias='ip')
+    allow_deny: str = Field(..., alias='allow_deny')
+    protocol: str = Field(..., alias='protocol')
+    weight: Optional[int] = Field(None, alias='weight')
+    id: Optional[int] = Field(None, alias='id') 
+
+    class Config:
+        allow_population_by_field_name = True
+        orm_mode = True
+        schema_extra = {
+            "example": {
+                "ip": "10.11.12.13",
+                "allow_deny": "Allow",
+                "protocol": "ALL",
+                "weight": 5,
+                "id": 32
+            }
+        }
+        
 
 # Get database connection from the DatabaseConnection class
 db_connection = DatabaseConnection()
@@ -33,12 +51,12 @@ db_connection = DatabaseConnection()
 def get_rules():
     db_conn = DatabaseConnection()
     conn = db_conn.connect_and_initialize()
-    with conn.cursor() as cursor:
-        cursor.execute("SELECT IP, AllowDeny, Protocol, Weighting FROM firewall_rules")
-        rules = cursor.fetchall()
+    cursor = conn.cursor()
+    cursor.execute("SELECT IP as 'ip', AllowDeny as 'allow_deny', Protocol as 'protocol', Weighting as 'weight' FROM firewall_rules")
+    rules = cursor.fetchall()
     conn.close()
-    rules_models = [FirewallRule(**rule) for rule in rules]
-    return rules_models
+    return rules 
+
 
 @app.post("/rules", response_model=FirewallRule)
 def add_rule(rule: FirewallRule):
@@ -63,9 +81,9 @@ def remove_rule(rule_id: int):
     return rule
 
 # Running the API with Uvicorn
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+#if __name__ == "__main__":
+#    import uvicorn
+#    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
 
 
 
