@@ -14,7 +14,7 @@ sys.path.append(root_dir)
 from connection_handling.DatabaseConnection import DatabaseConnection
 
 app = FastAPI()
-logging.basicConfig(filename='API_logs.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s') # allows outputs to be served to the log file if required
+logging.basicConfig(filename='API_logs.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s') # allows outputs to be served to the log file if required - "ERROR" level is set to avoid excessive logging, can be changed to WARN or INFO
 
 
 # Load environment variables (uses relative pathing) 
