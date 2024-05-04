@@ -1,0 +1,309 @@
+2024-05-04 16:24:52,410 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 23, in validate_ip
+    ipaddress.ip_address(ip)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\ipaddress.py", line 54, in ip_address
+    raise ValueError(f'{address!r} does not appear to be an IPv4 or IPv6 address')
+ValueError: '' does not appear to be an IPv4 or IPv6 address
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 54, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 14, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 27, in validate_ip
+    return self.validate_ip(input("Invalid IP address. Please enter a valid IP address: "))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 27, in validate_ip
+    return self.validate_ip(input("Invalid IP address. Please enter a valid IP address: "))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 27, in validate_ip
+    return self.validate_ip(input("Invalid IP address. Please enter a valid IP address: "))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 4 more times]
+EOFError
+2024-05-04 16:25:38,934 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 54, in run
+    while True:
+               ^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 14, in collect_data
+    time.sleep(1) # Synthetic wait period to slow the information being served to the user to a more readable pace
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 16:25:40,305 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=NameError("name 'time' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 55, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 14, in collect_data
+    time.sleep(1) # Synthetic wait period to slow the information being served to the user to a more readable pace
+    ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+2024-05-04 16:25:49,238 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=NameError("name 'time' is not defined")>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 55, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 14, in collect_data
+    time.sleep(1) # Synthetic wait period to slow the information being served to the user to a more readable pace
+    ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'
+2024-05-04 16:29:27,268 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    db_connection = await asyncio.to_thread(DatabaseConnection().connect_and_initialize)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 56, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 19, in collect_data
+    weighting = self.validate_weighting(input("Enter Weighting (integer): "))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 16:31:31,760 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 56, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 17, in collect_data
+    allow_deny = self.validate_allow_deny(input("Enter Allow or Deny: "))
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 16:36:59,216 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 56, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 16, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 16:41:10,767 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 56, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 16, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 17:31:23,751 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:24> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 26, in run_cli
+    asyncio.create_task(run_cli(cli)) # dispatches a new process to run the user CLI
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 56, in run
+    self.modify_table.InsertRow(self.modify_table).insert(*data)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 16, in collect_data
+    time.sleep(1) # Synthetic wait period to slow the information being served to the user to a more readable pace
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 17:32:13,299 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:28> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 30, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 61, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 17, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 17:41:26,359 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:28> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 30, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 61, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 17, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 17:53:56,095 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:28> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 30, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 61, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 17, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2024-05-04 18:02:47,682 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<run_cli() done, defined at C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py:28> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\Main.py", line 30, in run_cli
+    await asyncio.to_thread(cli.run)
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\asyncio\threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 61, in run
+    data = self.collect_data()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\xbox2\source\repos\Woodsy03\CMP2804\SQL_Integration\interface_handling\User_CLI.py", line 17, in collect_data
+    ip = self.validate_ip(input("Enter IP address: "))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
