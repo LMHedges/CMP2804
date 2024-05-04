@@ -39,7 +39,7 @@ async def user_input():
 
 # verifies if this is the main file before beginning the async loop
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop() # retrieves event loop 
-    loop.run_until_complete(startup()) # runs the startup function in an async loop (waits for startup to finish before proceeding to user_input())
-    loop.run_until_complete(user_input()) # runs user_input function - will hold the given process until a response it given
+#    loop = asyncio.get_event_loop() # retrieves event loop 
+    asyncio.run(startup()) # runs the startup function in an async loop (waits for startup to finish before proceeding to user_input())
+    asyncio.run(user_input()) # runs user_input function - will hold the given process until a response it given
     uvicorn.run(app, host="127.0.0.1", port=8000, reload=True) # opens fastAPI - host can be switched to 0.0.0.0 for blanket open interfaces (less secure) and reloading can be disabled in production
