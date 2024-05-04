@@ -61,7 +61,7 @@ class DatabaseConnection:
 
 
 
-    def connect_and_initialize(self):
+    def connect_and_initialise(self):
         return pymysql.connect(
             host=self.host,
             port=self.port,
@@ -74,5 +74,5 @@ class DatabaseConnection:
 
 if __name__ == "__main__":
     db = DatabaseConnection()
-    connection = db.connect_and_initialize()
+    connection = db.connect_and_initialise()
     print("Database and table setup complete.")

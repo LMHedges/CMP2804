@@ -1,14 +1,9 @@
+import asyncio
 import pymysql
-#from ModifyTable import ModifyTable
-#from ..ModifyTable import ModifyTable
-import os
-import sys; sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from ModifyTable import ModifyTable
-
 import ipaddress
-from dotenv import load_dotenv
-
+import os
+from ModifyTable import ModifyTable
+import time
 
 class UserCLI:
     def __init__(self, db_connection):
@@ -17,11 +12,11 @@ class UserCLI:
 
     def collect_data(self):
         # Collecting user data with validation
+        time.sleep(1) # Synthetic wait period to slow the information being served to the user to a more readable pace
         ip = self.validate_ip(input("Enter IP address: "))
         allow_deny = self.validate_allow_deny(input("Enter Allow or Deny: "))
         protocol = self.validate_protocol(input("Enter Protocol (TCP/UDP/ALL): "))
         weighting = self.validate_weighting(input("Enter Weighting (integer): "))
-
         return (ip, allow_deny, protocol, weighting)
 
     def validate_ip(self, ip):
@@ -63,10 +58,12 @@ class UserCLI:
             if input("Continue? (y/n): ").lower() != 'y':
                 break
 
-if __name__ == "__main__":
-    # Setup database connection
-    import os; from dotenv import load_dotenv; load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'SQL.env'))
+    async def collect_data_async(self):
+        # Asynchronously calling collect_data method using asyncio.to_thread
+        return await asyncio.to_thread(self.collect_data)
 
+if __name__ == "__main__":
+    load_dotenv()
     db_connection = pymysql.connect(
         host=os.getenv('SQLHost'),
         user=os.getenv('SQLUser'),
@@ -74,7 +71,7 @@ if __name__ == "__main__":
         database=os.getenv('SQLDatabase'),
         port=int(os.getenv('SQLPort')),
         charset='utf8mb4'
-        )
+    )
     
     cli = UserCLI(db_connection)
     cli.run()

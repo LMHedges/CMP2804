@@ -1,45 +1,43 @@
-from dotenv import load_dotenv
-import os
+# External library imports
+import asyncio
 import uvicorn
 from fastapi import FastAPI
-import asyncio
 
-from interface_handling.User_CLI import UserCLI
-from connection_handling.DatabaseConnection import DatabaseConnection
-from ModifyTable import ModifyTable
-
-
-# Import FastAPI instances from other modules
+# External file imports
 from interface_handling.System_API import app as system_api_app
 from packet_logging.packet_logging import app as packet_logging_app
+from connection_handling.DatabaseConnection import DatabaseConnection
+from ModifyTable import ModifyTable
+from interface_handling.User_CLI import UserCLI
 
-# Mounts FastAPI points to the new endpoints of /api/system and /api/packet-logging (example url http://127.0.0.1:8000/api/system/docs)
 app = FastAPI()
+
+# Async process to start to start both the FastAPI instances for Packet Logging and System API with uvicorn
+async def start_uvicorn():
+    config = uvicorn.Config(app=app, host="127.0.0.1", port=8000, reload=True, log_level="warning")
+    server = uvicorn.Server(config)
+    await server.serve()
+
+# creates a new thread on startup that verifies database connectivity - will only run if uvicorn successfully starts
+@app.on_event("startup")
+async def startup_event():
+    db_connection = await asyncio.to_thread(DatabaseConnection().connect_and_initialise)
+    cli = UserCLI(db_connection)
+    asyncio.create_task(run_cli(cli)) # dispatches a new process to run the user CLI
+
+async def run_cli(cli):
+    while True:
+        await asyncio.to_thread(cli.run)
+
+# Sets unique mountpoints for both FastAPI instances - can be changed if needed. /api/system/docs and /api/packet-logging/docs can be used for demonstration purposes
 app.mount("/api/system", system_api_app)
 app.mount("/api/packet-logging", packet_logging_app)
 
+# Little east egg incase you happen to be reading this code :)
+@app.get("/")
+async def read_root():
+    return {"Congratulations, you're found Ben's little easter egg! Have a coffee and rest here. You probably weren't expecting this - you may want to go to /api/system/docs or /api/packet-logging/docs :) "}
 
-# Handles startup including user interaction and defines pathways to guide the user depending on their choices
-async def startup():
-    # Verify valid database connection 
-    db_connection = DatabaseConnection()
-    connection = await db_connection.connect_and_initialize_async()
-    cursor = connection.cursor()
-    
-    ModifyTable_instance = ModifyTable(os.getenv("StorageType", "SQL"), cursor) # class initiation
-    if os.getenv("StorageType") == "SQL":
-        print("SQL chosen")
-
-
-# create a single process to ask the user for an input - will hold the given process until a response it given
-async def user_input():
-    if os.getenv("InputUserFormat", "User") == "User":
-        user_cli = UserCLI(connection)
-        await user_cli.collect_data_async()  
-
-# verifies if this is the main file before beginning the async loop
+# Main process handler
 if __name__ == "__main__":
-#    loop = asyncio.get_event_loop() # retrieves event loop 
-    asyncio.run(startup()) # runs the startup function in an async loop (waits for startup to finish before proceeding to user_input())
-    asyncio.run(user_input()) # runs user_input function - will hold the given process until a response it given
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True) # opens fastAPI - host can be switched to 0.0.0.0 for blanket open interfaces (less secure) and reloading can be disabled in production
+    asyncio.run(start_uvicorn())
