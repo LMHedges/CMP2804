@@ -24,3 +24,4 @@ class ModifyTable:
             else:
                 # Placeholder for CSV/other formats. Not able to proceed without code from others.
                 pass
+             
