@@ -69,7 +69,7 @@ class DatabaseConnection:
             password=self.password,
             database=self.database,
             charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor  # Ensure this is correctly set
+            cursorclass=pymysql.cursors.DictCursor
         )
 
 if __name__ == "__main__":

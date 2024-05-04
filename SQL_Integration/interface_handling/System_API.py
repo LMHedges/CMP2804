@@ -80,12 +80,6 @@ def remove_rule(rule_id: int):
         conn.commit()
     return rule
 
-# Running the API with Uvicorn
-#if __name__ == "__main__":
-#    import uvicorn
-#    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
-
-
 
 @app.get("/test-rule")
 def test_rule():
